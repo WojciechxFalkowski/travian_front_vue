@@ -1,0 +1,17 @@
+version: "3"
+
+volumes:
+  node_modules:
+services:
+  vue-front:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    ports:
+      - ${PORT}:${PORT}
+      - "24678:24678"
+    volumes:
+      - .:/src
+      - /src/node_modules
+    restart: always
+    command: npm run dev
